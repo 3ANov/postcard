@@ -1,0 +1,15 @@
+public static void paintTeddy(Graphics2D g) {
+    g.transform(new AffineTransform(3, 0, 0, 3, 0, 0));
+    drawEllipse(g,71, 155, 33, 17);
+    drawEllipse(g,113, 155, 33, 17);
+    drawEllipse(g,77, 106, 65, 59);
+    drawEllipse(g,83, 67, 52, 47);
+    drawEllipse(g,80, 60, 17, 15);
+    drawEllipse(g,120, 60, 17, 15);
+    drawEllipse(g,98, 79, 5, 5);
+    drawEllipse(g,113, 79, 5, 5);
+    drawEllipse(g,100, 88, 16, 14);
+    drawEllipse(g,106, 91, 4, 4);
+    drawEllipse(g,65, 110, 28, 25);
+    drawEllipse(g,125, 110, 28, 25);
+}

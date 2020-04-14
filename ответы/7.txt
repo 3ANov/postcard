@@ -1,0 +1,31 @@
+public static void paintWine(Graphics2D g) {
+        Deque<AffineTransform> transformations = WineUtils.init(g);
+
+        transformations.push(g.getTransform());
+        g.transform(new AffineTransform(0.27f, 0, 0, 0.27f, 0, 0));
+
+        GeneralPath shape = new GeneralPath();
+        shape.moveTo(271, 243);
+        shape.lineTo(271, 400);
+        shape.lineTo(209, 400);
+        shape.curveTo(182, 400, 160, 421, 160, 448);
+        shape.lineTo(160, 968);
+        shape.curveTo(160, 995, 182, 1017, 209, 1017);
+        shape.lineTo(426, 1019);
+        shape.curveTo(453, 1017, 474, 995, 474, 968);
+        shape.lineTo(474, 448);
+        shape.curveTo(474, 421, 453, 400, 428, 400);
+        shape.lineTo(367, 400);
+        shape.lineTo(367, 243);
+        shape.closePath();
+        g.setPaint(WHITE);
+        g.fill(shape);
+        g.setPaint(BLACK);
+        g.draw(shape);
+        g.setTransform(transformations.pop());
+
+        WineUtils.drawRectangle(g, BLACK, 43.1, 173, 85.2, 15);
+        WineUtils.drawRectangle(g, BLACK, 43.1, 226, 85.2, 15);
+        WineUtils.drawRoundRectangle(g, BLACK, 74, 51, 25, 15, 11, 11);
+        WineUtils.postPaint(g, transformations);
+    }

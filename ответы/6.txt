@@ -1,0 +1,59 @@
+public static void paintRabbit(Graphics2D graphics2D) {
+    Deque<AffineTransform> transformations = new LinkedList<AffineTransform>();
+
+    transformations.push(graphics2D.getTransform());
+    graphics2D.transform(new AffineTransform(3.78f, 0, 0, 3.78f, 0, 5.77E-5f));
+    graphics2D.setStroke(new BasicStroke(1));
+
+    printRectangle(graphics2D, 74, 82, 54, 127, 7, 7);
+    printEllipse(graphics2D,84, 149, 37, 46);
+
+    printEllipseWithAffineTransformation(graphics2D, transformations,
+            0.92f, -0.39f, 0.29f, 0.96f,
+            40, 60, 23, 59);
+    mergeWithBody(graphics2D, 74, 80, 14, 16);
+    printEllipseWithAffineTransformation(graphics2D, transformations,
+            0.98f, 0.2f, -0.31f, 0.95f,
+            132, 10, 23, 59);
+    mergeWithBody(graphics2D, 113, 80, 14, 15);
+
+    printEllipse(graphics2D, BLACK, BLACK, 91, 103, 6, 7);
+    printEllipse(graphics2D, BLACK, BLACK, 107, 103, 6, 7);
+
+    GeneralPath shape = new GeneralPath();
+    shape.moveTo(101, 124);
+    shape.lineTo(95, 114);
+    shape.lineTo(107, 114);
+    shape.closePath();
+
+    graphics2D.setPaint(BLACK);
+    graphics2D.fill(shape);
+
+    shape = new GeneralPath();
+    shape.moveTo(91, 136);
+    shape.lineTo(101, 124);
+    shape.lineTo(112, 135);
+
+    graphics2D.setPaint(BLACK);
+    graphics2D.draw(shape);
+
+    printEllipseWithAffineTransformation(graphics2D, transformations,
+            0.86f, -0.5f, 0.7f, 0.73f,
+            -125, 203, 52, 36);
+    mergeWithBody(graphics2D, 70, 190, 25, 25);
+    printEllipseWithAffineTransformation(graphics2D, transformations,
+            1f, 0.15f, 0.07f, 1f,
+            99, 177, 52, 36);
+    mergeWithBody(graphics2D, 110, 192, 20, 20);
+
+    printEllipseWithAffineTransformation(graphics2D, transformations,
+            1f, -0.15f, 0.34f, 0.94f,
+            -10, 146, 34, 24);
+    mergeWithBody(graphics2D, 72, 140, 7, 15);
+    printEllipseWithAffineTransformation(graphics2D, transformations,
+            1f, -0.15f, 0.34f, 0.94f,
+            67, 157, 34, 24);
+    mergeWithBody(graphics2D, 124, 139, 8, 14);
+
+    graphics2D.setTransform(transformations.pop());
+}

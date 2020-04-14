@@ -1,0 +1,34 @@
+public static void paintCheese(Graphics2D g) {
+        Deque<AffineTransform> transformations = new LinkedList<>();
+
+        drawLine(g, new Point2D.Double(43, 128), new ArrayList<Point2D.Double>(){{
+            add(new Point2D.Double(43, 173));
+            add(new Point2D.Double(170, 156));
+            add(new Point2D.Double(170, 128));
+        }});
+
+        transformations.push(g.getTransform());
+        g.transform(new AffineTransform(0.508f, 0, 0, 0.52f, 427.4f, 335.8f));
+
+        GeneralPath shape = new GeneralPath();
+        shape.moveTo(-756, -401);
+        shape.curveTo(-736, -416, -716, -431, -700, -438);
+        shape.curveTo(-686, -446, -676, -446, -644, -438);
+        shape.curveTo(-612, -431, -558, -416, -505, -401);
+        g.setPaint(Color.WHITE);
+        g.fill(shape);
+        g.setPaint(Color.BLACK);
+        g.setStroke(new BasicStroke(1));
+        g.draw(shape);
+        g.setTransform(transformations.pop());
+
+        drawEllipse(g, 62, 120, 15, 4);
+        drawEllipse(g, 110, 119, 15, 5);
+        drawEllipse(g, 85, 114, 15, 3);
+        drawEllipse(g, 51, 153, 13, 13);
+        drawEllipse(g, 65, 137, 16, 13);
+        drawEllipse(g, 132, 143, 12, 12);
+        drawEllipse(g, 98, 144, 14, 13);
+        drawEllipse(g, 117, 136, 9, 9);
+        drawEllipse(g, 92, 137, 5, 5);
+    }

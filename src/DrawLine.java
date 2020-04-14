@@ -11,9 +11,10 @@ public class DrawLine extends JComponent {
     public void paint(Graphics g) {
         // Draw a simple line using the Graphics2D draw() method.
         Graphics2D g2 = (Graphics2D) g;
-        //drawImage(g2);
+       // drawImage(g2);
         //paintEiffelTower(g2);
-        paintCheese(g2);
+        //paintTeddy(g2);
+        //paintCheese(g2);
         paintFlower(g2);
     }
 
@@ -31,8 +32,8 @@ public class DrawLine extends JComponent {
         drawEllipse(g,113, 155, 33, 17);
         drawEllipse(g,77, 106, 65, 59);
         drawEllipse(g,83, 67, 52, 47);
-        drawEllipse(g,80, 40, 17, 45);
-        drawEllipse(g,120, 40, 17, 45);
+        drawEllipse(g,80, 60, 17, 15);
+        drawEllipse(g,120, 60, 17, 15);
         drawEllipse(g,98, 79, 5, 5);
         drawEllipse(g,113, 79, 5, 5);
         drawEllipse(g,100, 88, 16, 14);
@@ -67,8 +68,8 @@ public class DrawLine extends JComponent {
                 new CurvePoints(375, 716, 421, 630, 435, 544),
                 new CurvePoints(450, 458, 479, 184, 471, 145));
         g.draw(shape);
-        g.translate(980.5, 0);
-        g.scale(-1, 1);
+        g.translate(980.5, 980.5);
+        g.scale(-1, -1);
         g.draw(shape);
         g.setTransform(defaultTransform);
 
@@ -341,55 +342,54 @@ public class DrawLine extends JComponent {
     }
 
     private static void drawLeaf(Graphics2D graphics2D, Deque<AffineTransform> transformations, float v, float v1, float v2, float v3, float v4, float v5) {
+        Path2D.Double p = new Path2D.Double();
 
 
-        transformations.push(graphics2D.getTransform());
-        graphics2D.transform(new AffineTransform(v, v1, v2, v3, v4, v5));
+        p.moveTo(v, v1);
+        graphics2D.draw(p);
+        Ellipse2D.Double el = new Ellipse2D.Double(v2,v3,v4,v5);
 
-        GeneralPath shape = new GeneralPath();
-        graphics2D.setPaint(Color.WHITE);
-        graphics2D.fill(shape);
-        graphics2D.setPaint(Color.BLACK);
-        graphics2D.setStroke(new BasicStroke(1));
-        graphics2D.draw(shape);
+
+
         for (AffineTransform transform:transformations) {
             graphics2D.setTransform(transform);
         }
+        graphics2D.draw(el);
 
 
 
 
     }
 
-//    public static void paintWine(Graphics2D g) {
-//        Deque<AffineTransform> transformations = WineUtils.init(g);
-//
-//        transformations.push(g.getTransform());
-//        g.transform(new AffineTransform(0.27f, 0, 0, 0.27f, 0, 0));
-//
-//        GeneralPath shape = new GeneralPath();
-//        shape.moveTo(271, 243);
-//        shape.lineTo(271, 400);
-//        shape.lineTo(209, 400);
-//        shape.curveTo(182, 400, 160, 421, 160, 448);
-//        shape.lineTo(160, 968);
-//        shape.curveTo(160, 995, 182, 1017, 209, 1017);
-//        shape.lineTo(426, 1019);
-//        shape.curveTo(453, 1017, 474, 995, 474, 968);
-//        shape.lineTo(474, 448);
-//        shape.curveTo(474, 421, 453, 400, 428, 400);
-//        shape.lineTo(367, 400);
-//        shape.lineTo(367, 243);
-//        shape.closePath();
-//        g.setPaint(WHITE);
-//        g.fill(shape);
-//        g.setPaint(BLACK);
-//        g.draw(shape);
-//        g.setTransform(transformations.pop());
-//
-//        WineUtils.drawRectangle(g, BLACK, 43.1, 173, 85.2, 15);
-//        WineUtils.drawRectangle(g, BLACK, 43.1, 226, 85.2, 15);
-//        WineUtils.drawRoundRectangle(g, BLACK, 74, 51, 25, 15, 11, 11);
-//        WineUtils.postPaint(g, transformations);
-//    }
+    public static void paintWine(Graphics2D g) {
+        Deque<AffineTransform> transformations = WineUtils.init(g);
+
+        transformations.push(g.getTransform());
+        g.transform(new AffineTransform(0.27f, 0, 0, 0.27f, 0, 0));
+
+        GeneralPath shape = new GeneralPath();
+        shape.moveTo(271, 243);
+        shape.lineTo(271, 400);
+        shape.lineTo(209, 400);
+        shape.curveTo(182, 400, 160, 421, 160, 448);
+        shape.lineTo(160, 968);
+        shape.curveTo(160, 995, 182, 1017, 209, 1017);
+        shape.lineTo(426, 1019);
+        shape.curveTo(453, 1017, 474, 995, 474, 968);
+        shape.lineTo(474, 448);
+        shape.curveTo(474, 421, 453, 400, 428, 400);
+        shape.lineTo(367, 400);
+        shape.lineTo(367, 243);
+        shape.closePath();
+        g.setPaint(Color.WHITE);
+        g.fill(shape);
+        g.setPaint(Color.BLACK);
+        g.draw(shape);
+        g.setTransform(transformations.pop());
+
+        WineUtils.drawRectangle(g, Color.BLACK, 43.1, 173, 85.2, 15);
+        WineUtils.drawRectangle(g, Color.BLACK, 43.1, 226, 85.2, 15);
+        WineUtils.drawRoundRectangle(g, BLACK, 74, 51, 25, 15, 11, 11);
+        WineUtils.postPaint(g, transformations);
+    }
 }

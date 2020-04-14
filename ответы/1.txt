@@ -1,0 +1,64 @@
+private static void paintEiffelTower(Graphics2D g) {
+    g.setStroke(new BasicStroke(19, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 4));
+    Shape shape;
+    AffineTransform defaultTransform = g.getTransform();
+
+    g.draw(getStraightLineShape(new Point2D.Double(490.5, 80), new Point2D.Double(490.5, 33)));
+
+    g.draw(getStraightLineShape(
+        new Point2D.Double(470, 134.5),
+        new Point2D.Double(459, 102),
+        new Point2D.Double(491, 80),
+        new Point2D.Double(522, 102.5),
+        new Point2D.Double(511, 134.5)));
+
+    g.draw(getStraightLineShape(new Point2D.Double(456, 141), new Point2D.Double(525, 141)));
+
+    shape = getCurveLineShape(
+        new Point2D.Double(375, 716),
+        new CurvePoints(375, 716, 421, 630, 435, 544),
+        new CurvePoints(450, 458, 479, 184, 471, 145));
+    g.draw(shape);
+    g.translate(980.5, 0);
+    g.scale(-1, 1);
+    g.draw(shape);
+    g.setTransform(defaultTransform);
+
+    g.draw(getStraightLineShape(new Point2D.Double(491, 496), new Point2D.Double(491, 393)));
+
+    g.draw(getStraightLineShape(new Point2D.Double(415, 543), new Point2D.Double(566, 543)));
+
+    g.draw(getCurveLineShape(
+        new Point2D.Double(438, 715),
+        new CurvePoints(438, 715, 461, 659, 470, 604),
+        new CurvePoints(511, 604, 511, 604, 511, 604),
+        new CurvePoints(514, 604, 533, 693, 543, 715)));
+
+    shape = getCurveLineShape(new Point2D.Double(226, 952),
+        new CurvePoints(226, 952, 310, 845, 344, 790));
+    g.draw(shape);
+    g.translate(980.5, 0);
+    g.scale(-1, 1);
+    g.draw(shape);
+    g.setTransform(defaultTransform);
+
+    shape = new RoundRectangle2D.Double(329, 717, 323, 64, 30, 30);
+    g.draw(shape);
+
+    Shape line = getStraightLineShape(new Point2D.Double(372.5, 744), new Point2D.Double(372.5, 756));
+    for(int i = 0; i < 6; i++) {
+        g.draw(line);
+        g.translate(47, 0);
+    }
+    g.setTransform(defaultTransform);
+
+    g.draw(getCurveLineShape(new Point2D.Double(319, 955),
+        new CurvePoints(319, 955, 350, 820, 488, 821),
+        new CurvePoints(625, 822, 665, 957, 662, 955)));
+
+    shape = new RoundRectangle2D.Double(203, 959, 131, 47, 30, 30);
+    g.draw(shape);
+    g.translate(444.5, 0);
+    g.draw(shape);
+    g.setTransform(defaultTransform);
+}
